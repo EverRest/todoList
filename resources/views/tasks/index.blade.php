@@ -16,19 +16,27 @@
                     <form action="{{ url('task') }}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
 
-                        <!-- Task Name -->
+                        <!-- Task -->
                         <div class="form-group">
-                            <label for="task-name" class="col-sm-3 control-label">Task</label>
+                            <label for="task" class="col-sm-3 control-label">Task</label>
 
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                                <input type="text" name="task" id="task-task" class="form-control" value="{{ old('task') }}">
                             </div>
                         </div>
 
+                        <!-- Task Status -->
+                        <div class="form-group">
+                            <label for="status" class="col-sm-3 control-label">Status</label>
+
+                            <div class="col-sm-6">
+                                <input type="text" name="status" id="task-status" class="form-control" value="{{ old('task') }}">
+                            </div>
+                        </div>
                         <!-- Add Task Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-default">
+                                <button type="submit" class="btn btn-default btn-success">
                                     <i class="fa fa-btn fa-plus"></i>Add Task
                                 </button>
                             </div>
@@ -53,7 +61,11 @@
                             <tbody>
                                 @foreach ($tasks as $task)
                                     <tr>
-                                        <td class="table-text"><div>{{ $task->name }}</div></td>
+                                        <td class="table-text"><div>{{ $task->task }}</div></td>
+                                        
+                                        <td class="table-text"><div>{{ $task->status }}</div></td>
+                                        
+                                        <td class="table-text"><div>{{ $task->created_at }}</div></td>
 
                                         <!-- Task Delete Button -->
                                         <td>

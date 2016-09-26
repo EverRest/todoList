@@ -54,11 +54,17 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'task' => 'required|min:5',
+        ]);
+        
+        $this->validate($request, [
+            'status' => 'required',
         ]);
 
         $request->user()->tasks()->create([
-            'name' => $request->name,
+            'task' => $request->task,
+            'status' => $request->status,
+            'user_id' => 1
         ]);
 
         return redirect('/tasks');
