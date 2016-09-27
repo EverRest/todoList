@@ -5,7 +5,7 @@
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    New Task
+                    <h3>New Task</h3>
                 </div>
 
                 <div class="panel-body">
@@ -24,15 +24,17 @@
                                 <input type="text" name="task" id="task-task" class="form-control" value="{{ old('task') }}">
                             </div>
                         </div>
-
-                        <!-- Task Status -->
+                        <!-- Status -->
                         <div class="form-group">
                             <label for="status" class="col-sm-3 control-label">Status</label>
-
                             <div class="col-sm-6">
-                                <input type="text" name="status" id="task-status" class="form-control" value="{{ old('task') }}">
-                            </div>
+                            <select name="status" id="task-status" class="form-control">
+                              <option value="to_do">To do</option>
+                              <option value="done">Done</option>
+                            </select>   
+                            </div>                            
                         </div>
+
                         <!-- Add Task Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
@@ -49,18 +51,27 @@
             @if (count($tasks) > 0)
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Current Tasks
+                        <h3>Task</h3>
                     </div>
 
                     <div class="panel-body">
                         <table class="table table-striped task-table">
                             <thead>
+                                <th>User</th>
+
                                 <th>Task</th>
+
+                                <th>Status</th>
+
+                                <th>Created</th>
+
                                 <th>&nbsp;</th>
                             </thead>
                             <tbody>
                                 @foreach ($tasks as $task)
                                     <tr>
+                                        <td class="table-text"><div>{{ $task->user_id }}</div></td>
+
                                         <td class="table-text"><div>{{ $task->task }}</div></td>
                                         
                                         <td class="table-text"><div>{{ $task->status }}</div></td>
